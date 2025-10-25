@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { FadeIn } from "@/app/utils/FadeIn";
 import heroImg from "@/../public/images/hero.jpg";
 import { RevealText } from "@/app/utils/RevealText";
+import ButtonLink from "@/app/utils/ButtonLink";
 
 gsap.registerPlugin(useGSAP);
 
@@ -40,11 +41,8 @@ const Hero = () => {
           commands attention without seeking it. A reflection of {"nature’s"}{" "}
           raw beauty.
         </FadeIn>
-        <FadeIn
-          vars={{ delay: 1.7, duration: 1.1 }}
-          className=" translate-y-5 mt-8 inline-flex items-center justify-center px-12 py-4 text-center font-extrabold tracking-wider uppercase transition-colors duration-300 border border-white text-white hover:bg-white/20 cursor-pointer w-fit"
-        >
-          shop now
+        <FadeIn vars={{ delay: 1.7, duration: 1.1 }}>
+          <ButtonLink text="shop now" link="/" />
         </FadeIn>
       </div>
     </div>
