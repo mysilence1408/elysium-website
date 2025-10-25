@@ -1,5 +1,4 @@
 import React from "react";
-import { FadeIn } from "./FadeIn";
 import Link from "next/link";
 
 type ButtonLinkProps = {

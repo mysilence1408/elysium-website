@@ -2,7 +2,6 @@ import React from "react";
 import gridImage from "@/../public/images/grid-picture.jpg";
 import perfumeImg from "@/../public/images/ignis-bottle.png";
 import Image from "next/image";
-import Link from "next/link";
 import { FadeIn } from "@/app/utils/FadeIn";
 import { formatPrice } from "@/app/utils/formatters";
 import ButtonLink from "@/app/utils/ButtonLink";
