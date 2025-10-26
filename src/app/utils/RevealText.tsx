@@ -4,8 +4,9 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import clsx from "clsx";
 import React, { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type RevealTextProps = {
   id: string;
@@ -15,6 +16,8 @@ type RevealTextProps = {
   duration?: number;
   text: string;
   align?: "center" | "start" | "end";
+  triggerStart?: string;
+  triggerEnd?: string;
 };
 
 export const RevealText = ({
@@ -25,6 +28,8 @@ export const RevealText = ({
   duration = 0.8,
   staggerAmount = 0.1,
   text,
+  triggerStart = "top 80%",
+  triggerEnd = "bottom 20%",
 }: RevealTextProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -39,6 +44,11 @@ export const RevealText = ({
           stagger: staggerAmount,
           duration,
           ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: triggerStart,
+            end: triggerEnd,
+          },
         });
       });
 
