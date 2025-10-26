@@ -27,7 +27,7 @@ const Hero = () => {
       <div className="flex relative h-screen flex-col justify-center">
         <RevealText
           id="hero-heading"
-          text="  Effortless Elegance"
+          text="Effortless Elegance"
           className=" max-w-xl text-6xl leading-none text-neutral-50 md:text-7xl lg:text-8xl font-display"
           staggerAmount={0.2}
           duration={1.7}
