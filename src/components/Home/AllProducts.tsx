@@ -1,4 +1,4 @@
-import { RevealText } from "@/app/utils/RevealText";
+import { RevealText } from "@/utils/RevealText";
 import React from "react";
 import ProductsList from "./ProductsList";
 import { productsData } from "./Data";

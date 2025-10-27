@@ -1,5 +1,5 @@
-import { FadeIn } from "@/app/utils/FadeIn";
-import { RevealText } from "@/app/utils/RevealText";
+import { FadeIn } from "@/utils/FadeIn";
+import { RevealText } from "@/utils/RevealText";
 import React from "react";
 
 const Slogan = () => {

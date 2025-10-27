@@ -1,5 +1,5 @@
-import ButtonLink from "@/app/utils/ButtonLink";
-import { FadeIn } from "@/app/utils/FadeIn";
+import ButtonLink from "@/utils/ButtonLink";
+import { FadeIn } from "@/utils/FadeIn";
 import Image from "next/image";
 import React from "react";
 

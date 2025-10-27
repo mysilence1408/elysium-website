@@ -2,10 +2,10 @@ import React from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { FadeIn } from "@/app/utils/FadeIn";
+import { FadeIn } from "@/utils/FadeIn";
 import heroImg from "@/../public/images/hero.jpg";
-import { RevealText } from "@/app/utils/RevealText";
-import ButtonLink from "@/app/utils/ButtonLink";
+import { RevealText } from "@/utils/RevealText";
+import ButtonLink from "@/utils/ButtonLink";
 
 gsap.registerPlugin(useGSAP);
 
