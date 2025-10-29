@@ -1,21 +1,28 @@
 import React from "react";
 import { notFound } from "next/navigation";
 
+// Define Product interface
+interface Product {
+  _id: string;
+  name: string;
+  slug: string;
+  description: string;
+  image?: string;
+  price?: number;
+}
+
 // Fetch data from your API
-const getData = async (slug) => {
+const getData = async (slug: string): Promise<Product | null> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/products`, {
-      // Important for Next.js SSR
-      next: { revalidate: 0 }, // disables caching during development
+    const res = await fetch("http://localhost:3000/api/products", {
+      next: { revalidate: 0 },
     });
 
     if (!res.ok) {
       throw new Error("Failed to fetch products");
     }
 
-    const products = await res.json();
-
-    // Find product by slug
+    const products: Product[] = await res.json();
     const product = products.find((item) => item.slug === slug);
     return product || null;
   } catch (error) {
@@ -24,12 +31,17 @@ const getData = async (slug) => {
   }
 };
 
-const ProductPage = async ({ params }) => {
-  const { slug } = params;
+// ✅ Note the awaited params
+const ProductPage = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
+  const { slug } = await params;
   const product = await getData(slug);
 
   if (!product) {
-    notFound(); // Next.js 404 page
+    notFound();
   }
 
   return (
