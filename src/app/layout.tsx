@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Footer } from "@/components/Global/Footer";
 import Navbar from "@/components/Global/Navbar";
+import { ViewTransitions } from "next-view-transitions";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -27,15 +28,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${raleway.variable} ${gambarino.variable} antialiased`}
-    >
-      <body className=" bg-neutral-900 text-white">
-        <Navbar />
-        <main className=" pt-14 md:pt-16">{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <ViewTransitions>
+      <html
+        lang="en"
+        className={`${raleway.variable} ${gambarino.variable} antialiased`}
+      >
+        <body className=" bg-neutral-900 text-white">
+          <Navbar />
+          <main className=" pt-14 md:pt-16">{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

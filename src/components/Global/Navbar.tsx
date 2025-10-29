@@ -1,8 +1,7 @@
 "use client";
-
 import clsx from "clsx";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import React, { useState } from "react";
 import {
   HiBars3,
@@ -100,7 +99,7 @@ const Navbar = () => {
 
       <div
         className={clsx(
-          " nav-drawer fixed top-0 left-0 z-50  h-full w-72 bg-neutral-900 p-6 transition-transform duration-500",
+          "nav-drawer fixed top-0 left-0 z-50  h-full w-72 bg-neutral-900 p-6 transition-transform duration-500",
           isDrawerOpen ? " translate-x-0" : " -translate-x-full"
         )}
         role="dialog"
