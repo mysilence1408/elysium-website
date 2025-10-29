@@ -1,5 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
+import { formatPrice } from "@/utils/formatters";
 
 // Define Product interface
 interface Product {
@@ -45,23 +46,40 @@ const ProductPage = async ({
   }
 
   return (
-    <div className="min-h-screen px-6 py-12">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">{product.name}</h1>
-
-        {product.image && (
+    <div className=" px-8 lg:px-16 py-16">
+      <div className=" grid grid-cols-1 items-center gap-10 pb-10 lg:grid-cols-2">
+        <div className=" relative mb-14 flex justify-center pb-10">
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-auto rounded-2xl mb-6"
+            width={600}
+            height={600}
+            className=" absolute top-[90%] -scale-y-100 [mask-image:linear-gradient(to_bottom,rgba(0,0,0,0)_70%,rgba(0,0,0,.15)_100%)]"
           />
-        )}
+          <img
+            src={product.image}
+            alt={product.name}
+            width={600}
+            height={600}
+            className=" relative"
+          />
+        </div>
+        {/* products info section */}
+        <div className="text-white">
+          <h1 className="font-display mb-4 border-b border-neutral-700 pb-2 text-4xl md:text-5xl">
+            {product.name}
+          </h1>
+          <div className=" space-y-6">
+            <p>{product.description}</p>
+            <p className=" mt-10  text-3xl font-light">
+              {formatPrice(product.price)}
+            </p>
 
-        <p className="text-lg text-gray-700">{product.description}</p>
-
-        {product.price && (
-          <p className="mt-4 text-xl font-semibold">Price: ${product.price}</p>
-        )}
+            <button className=" cursor-pointer w-full bg-white py-3 font-medium text-black uppercase transition hover:bg-neutral-200 duration-200">
+              Add to Bag
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
