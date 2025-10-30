@@ -7,9 +7,9 @@ import {
   HiBars3,
   HiMagnifyingGlass,
   HiShoppingBag,
-  HiUser,
   HiXMark,
 } from "react-icons/hi2";
+import UserButton from "@/utils/UserButton";
 
 type NavIconsProps = {
   className?: string;
@@ -25,14 +25,7 @@ const NavIcons = ({ className = "", tabIndex }: NavIconsProps) => (
     >
       <HiMagnifyingGlass size={24} />
     </Link>
-    <Link
-      href="#"
-      className=" text-white"
-      aria-label="Account"
-      tabIndex={tabIndex}
-    >
-      <HiUser size={24} />
-    </Link>
+    <UserButton />
     <Link
       href="#"
       className=" text-white"
@@ -107,7 +100,7 @@ const Navbar = () => {
       >
         <div className="flex mb-6 justify-end">
           <button
-            className=" p-2 text-white transition-colors duration-300 hover:bg-white/10"
+            className=" p-2 text-white transition-colors duration-300 hover:bg-white/10 cursor-pointer"
             onClick={toggleDrawer}
             aria-label="Close Menu"
             tabIndex={isDrawerOpen ? 0 : -1}

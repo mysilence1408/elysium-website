@@ -5,6 +5,8 @@ import "./globals.css";
 import { Footer } from "@/components/Global/Footer";
 import Navbar from "@/components/Global/Navbar";
 import { ViewTransitions } from "next-view-transitions";
+import { Toaster } from "react-hot-toast";
+import Providers from "@/utils/Providers";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -34,9 +36,7 @@ export default function RootLayout({
         className={`${raleway.variable} ${gambarino.variable} antialiased`}
       >
         <body className=" bg-neutral-900 text-white">
-          <Navbar />
-          <main className=" pt-14 md:pt-16">{children}</main>
-          <Footer />
+          <Providers>{children}</Providers>
         </body>
       </html>
     </ViewTransitions>
