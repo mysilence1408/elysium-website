@@ -40,7 +40,7 @@ export const Footer = () => {
             className="order-first md:order-none"
           >
             <Image
-              src="/images/logo.webp"
+              src="/images/logo.png"
               alt="CÔTE ROYALE"
               width={150}
               height={25}
