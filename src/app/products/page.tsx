@@ -1,17 +1,15 @@
 import React from "react";
 import { Link } from "next-view-transitions";
 
-// Define the product type
 interface Product {
   _id: string;
   name: string;
   slug: string;
-  desc: string;
+  description: string;
   image?: string;
   price?: number;
 }
 
-// Fetch products from your MongoDB API
 const getProducts = async (): Promise<Product[]> => {
   try {
     const res = await fetch("http://localhost:3000/api/products", {
@@ -54,7 +52,7 @@ const Products = async () => {
               />
             )}
             <h6 className="text-xl font-semibold mb-2">{item.name}</h6>
-            <p className="text-gray-600 mb-2">{item.desc}</p>
+            <p className="text-gray-600 mb-2">{item.description}</p>
             {item.price && (
               <span className="font-bold text-lg">${item.price}</span>
             )}

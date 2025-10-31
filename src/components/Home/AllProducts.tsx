@@ -1,15 +1,43 @@
 import { RevealText } from "@/utils/RevealText";
 import React from "react";
 import ProductsList from "./ProductsList";
-import { productsData } from "./Data";
 
-const AllProducts = () => {
+interface Product {
+  _id: number;
+  name: string;
+  description: string;
+  image?: string;
+  price?: number;
+}
+
+const getProducts = async (): Promise<Product[]> => {
+  try {
+    const res = await fetch("http://localhost:3000/api/products", {
+      next: { revalidate: 0 },
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch products");
+    }
+
+    const products = await res.json();
+    return products;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
+};
+
+const AllProducts = async () => {
+  const products = await getProducts();
+
   return (
-    <div className=" space-y-8 bg-black py-16 text-center text-white md:py-24">
-      <div className=" mx-auto space-y-8">
-        <p className=" text-sm font-light tracking-[0.2em] uppercase">
+    <div className="space-y-8 bg-black py-16 text-center text-white md:py-24">
+      <div className="mx-auto space-y-8">
+        <p className="text-sm font-light tracking-[0.2em] uppercase">
           Our Fragrances
         </p>
+
         <RevealText
           text="An Essence for Every Man"
           as="h2"
@@ -17,26 +45,29 @@ const AllProducts = () => {
           align="center"
           duration={1.5}
           staggerAmount={0.3}
-          className=" font-display text-5xl uppercase sm:text-6xl md:text-7xl lg:text-8xl tracking-widest"
+          className="font-display text-5xl uppercase sm:text-6xl md:text-7xl lg:text-8xl tracking-widest"
         />
 
-        <p className=" mx-auto max-w-2xl text-lg text-balance text-gray-300">
+        <p className="mx-auto max-w-2xl text-lg text-balance text-gray-300">
           An expression of quiet luxury, Côte Royale is designed for the man who
           commands attention without seeking it.
         </p>
-        <div className=" mt-12 grid grid-cols-1 gap-12">
-          {productsData.map((product) => {
-            return (
+
+        {products.length === 0 ? (
+          <p className="text-gray-500 text-lg mt-12">No products found.</p>
+        ) : (
+          <div className="mt-12 grid grid-cols-1 gap-12">
+            {products.map((product) => (
               <ProductsList
-                key={product.id}
-                id={product.id}
-                img={product.image}
+                key={product._id}
+                id={product._id}
+                img={product.image || "/placeholder.jpg"}
                 title={product.name}
-                desc={product.desc}
+                desc={product.description}
               />
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

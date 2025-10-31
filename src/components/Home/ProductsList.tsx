@@ -36,7 +36,9 @@ const ProductsList = ({ img, title, desc }: ProductsListProps) => {
         <p className="mb-4 text-base font-semibold text-gray-300">
           Eau de parfum
         </p>
-        <div className="mb-8 max-w-md text-lg text-gray-300">{desc}</div>
+        <div className="mb-8 max-w-md text-lg text-gray-200">
+          {desc || "⚠️ No description found"}
+        </div>
 
         <div className="flex flex-wrap gap-4">
           <ButtonLink text="discover" link="/" />
