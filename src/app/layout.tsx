@@ -35,7 +35,7 @@ export default function RootLayout({
         lang="en"
         className={`${raleway.variable} ${gambarino.variable} antialiased`}
       >
-        <body className=" bg-neutral-900 text-white">
+        <body className=" bg-[#0C1A27] text-white">
           <Providers>{children}</Providers>
         </body>
       </html>

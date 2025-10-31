@@ -3,12 +3,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import React, { useState } from "react";
-import {
-  HiBars3,
-  HiMagnifyingGlass,
-  HiShoppingBag,
-  HiXMark,
-} from "react-icons/hi2";
+import { HiBars3, HiShoppingBag, HiXMark } from "react-icons/hi2";
 import UserButton from "@/utils/UserButton";
 
 type NavIconsProps = {
@@ -17,14 +12,6 @@ type NavIconsProps = {
 };
 const NavIcons = ({ className = "", tabIndex }: NavIconsProps) => (
   <div className={clsx("flex items-center gap-8", className)}>
-    <Link
-      href="#"
-      className=" text-white"
-      aria-label="Search"
-      tabIndex={tabIndex}
-    >
-      <HiMagnifyingGlass size={24} />
-    </Link>
     <UserButton />
     <Link
       href="#"
@@ -32,7 +19,7 @@ const NavIcons = ({ className = "", tabIndex }: NavIconsProps) => (
       aria-label="Cart"
       tabIndex={tabIndex}
     >
-      <HiShoppingBag size={24} />
+      <HiShoppingBag size={24} color="#c7d7e6" />
     </Link>
   </div>
 );
@@ -53,19 +40,19 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="navbar fixed top-0 left-0 z-50 w-full bg-black text-white">
+      <div className="navbar fixed top-0 left-0 z-50 w-full bg-[#020609] text-white">
         <div className="flex items-center justify-between p-2 md:p-4">
           <button
             onClick={toggleDrawer}
             aria-label="Menu"
             className=" p-2 cursor-pointer text-white transition-colors duration-300 hover:bg-white/20 "
           >
-            <HiBars3 size={24} />
+            <HiBars3 size={24} color="#c7d7e6" />
           </button>
           <div className="absolute left-1/2 -translate-x-1/2 transform">
             <Link href="/">
               <Image
-                src="/images/logo.webp"
+                src="/images/logo.png"
                 width={180}
                 height={30}
                 alt="logo"
@@ -92,7 +79,7 @@ const Navbar = () => {
 
       <div
         className={clsx(
-          "nav-drawer fixed top-0 left-0 z-50  h-full w-72 bg-neutral-900 p-6 transition-transform duration-500",
+          "nav-drawer fixed top-0 left-0 z-50  h-full w-72 bg-[#060E16] p-6 transition-transform duration-500",
           isDrawerOpen ? " translate-x-0" : " -translate-x-full"
         )}
         role="dialog"

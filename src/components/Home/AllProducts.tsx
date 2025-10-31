@@ -8,6 +8,7 @@ interface Product {
   description: string;
   image?: string;
   price?: number;
+  slug: string;
 }
 
 const getProducts = async (): Promise<Product[]> => {
@@ -32,25 +33,25 @@ const AllProducts = async () => {
   const products = await getProducts();
 
   return (
-    <div className="space-y-8 bg-black py-16 text-center text-white md:py-24">
+    <div className="space-y-8 bg-[#0C1A27] py-16 text-center text-white md:py-24">
       <div className="mx-auto space-y-8">
         <p className="text-sm font-light tracking-[0.2em] uppercase">
-          Our Fragrances
+          The Collection
         </p>
 
         <RevealText
-          text="An Essence for Every Man"
+          text="An Elegance For Every Mood"
           as="h2"
           id="product-heading"
           align="center"
           duration={1.5}
           staggerAmount={0.3}
-          className="font-display text-5xl uppercase sm:text-6xl md:text-7xl lg:text-8xl tracking-widest"
+          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-widest"
         />
 
         <p className="mx-auto max-w-2xl text-lg text-balance text-gray-300">
-          An expression of quiet luxury, Côte Royale is designed for the man who
-          commands attention without seeking it.
+          Where luxury meets emotion, transforming every fragrance into a
+          signature expression of character and elegance.
         </p>
 
         {products.length === 0 ? (

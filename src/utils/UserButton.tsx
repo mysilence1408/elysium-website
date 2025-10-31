@@ -42,7 +42,7 @@ const UserButton = () => {
                 className="h-10 w-10 rounded-full"
               />
             ) : (
-              <div className="h-10 w-10 flex items-center justify-center bg-gray-300 rounded-full">
+              <div className="h-10 w-10 flex items-center justify-center bg-purple-700 rounded-full">
                 {avatarFallBack}
               </div>
             )}
@@ -59,7 +59,7 @@ const UserButton = () => {
         </div>
       ) : (
         <Link href="/sign-in">
-          <HiUser size={24} />
+          <HiUser size={24} color="#c7d7e6" />
         </Link>
       )}
     </div>

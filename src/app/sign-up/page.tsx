@@ -1,11 +1,10 @@
 "use client";
 import { Link } from "next-view-transitions";
 import React from "react";
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -66,11 +65,23 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-red-400 py-16 px-4 lg:px-8 ">
-      <div className=" bg-white text-black space-y-8 p-10 lg:p-20 rounded-md">
+    <div className="flex items-center justify-center bg-[url('/images/signup_bg.jpg')] py-16 px-4 lg:px-8 ">
+      <motion.div
+        initial={{ borderColor: "hsl(340, 82%, 47%)" }}
+        animate={{
+          borderColor: ["hsl(340, 82%, 47%)", "hsl(240, 100%, 50%)"],
+          transition: {
+            duration: 4,
+            ease: "linear",
+            repeat: Infinity,
+            repeatType: "mirror",
+          },
+        }}
+        className=" border border-solid backdrop-blur-sm text-white space-y-8 p-10 lg:p-20 rounded-md"
+      >
         <div className=" text-center space-y-4">
           <h1 className=" text-4xl font-bold"> Sign up</h1>
-          <p>Use email or service to create account</p>
+          <p>Use email to create account</p>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <input
@@ -80,7 +91,7 @@ const SignUp = () => {
             value={form.name}
             placeholder="Full name"
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className=" border-2 border-gray-200 px-1 py-2 rounded-md"
+            className=" border-2 border-[#48474a] px-1 py-2 rounded-md"
           />
           <input
             type="email"
@@ -89,7 +100,7 @@ const SignUp = () => {
             placeholder="Email"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className=" border-2 border-gray-200 px-1 py-2 rounded-md"
+            className=" border-2 border-[#48474a] px-1 py-2 rounded-md"
           />
           <input
             type="password"
@@ -98,7 +109,7 @@ const SignUp = () => {
             placeholder="Password"
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
-            className=" border-2 border-gray-200 px-1 py-2 rounded-md"
+            className=" border-2 border-[#48474a] px-1 py-2 rounded-md"
           />
           <input
             type="password"
@@ -109,39 +120,36 @@ const SignUp = () => {
             onChange={(e) =>
               setForm({ ...form, confirmPassword: e.target.value })
             }
-            className=" border-2 border-gray-200 px-1 py-2 rounded-md"
+            className=" border-2 border-[#48474a] px-1 py-2 rounded-md"
           />
-          <button
+          <motion.button
+            initial={{ backgroundColor: "hsl(340, 82%, 47%)" }}
+            animate={{
+              backgroundColor: ["hsl(340, 82%, 47%)", "hsl(240, 100%, 50%)"],
+              transition: {
+                duration: 4,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "mirror",
+              },
+            }}
             disabled={pending}
-            className=" w-full bg-neutral-800 rounded-md text-white py-2 cursor-pointer hover:bg-black transition-colors duration-300 ease-in-out"
+            className=" w-full rounded-md text-white py-2 cursor-pointer hover:bg-black transition-colors duration-300 ease-in-out"
           >
             Continue
-          </button>
+          </motion.button>
         </form>
-        <div className=" flex my-2 justify-evenly mx-auto items-center">
-          <button
-            onClick={() => {}}
-            className=" bg-slate-300  hover:bg-slate-400 p-2 rounded-md cursor-pointer"
-          >
-            <FcGoogle className=" size-8 left-2.5 top-2.5" />
-          </button>
-          <button
-            onClick={() => {}}
-            className=" bg-slate-300  hover:bg-slate-400 p-2 rounded-md cursor-pointer"
-          >
-            <FaGithub className=" size-8 left-2.5 top-2.5" />
-          </button>
-        </div>
+
         <div className=" flex items-end justify-center">
           <p className=" text-center text-sm mt-2">Already have an account?</p>
           <Link
-            className=" text-sky-700 ml-4 hover:underline cursor-pointer text-sm"
+            className=" text-[#EA2264] ml-4 hover:underline cursor-pointer text-sm"
             href="/sign-in"
           >
             Sign in
           </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

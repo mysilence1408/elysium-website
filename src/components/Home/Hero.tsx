@@ -3,7 +3,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { FadeIn } from "@/utils/FadeIn";
-import heroImg from "@/../public/images/hero.jpg";
+
 import { RevealText } from "@/utils/RevealText";
 import ButtonLink from "@/utils/ButtonLink";
 
@@ -16,18 +16,19 @@ const Hero = () => {
         vars={{ scale: 1, opacity: 0.5 }}
         className="absolute inset-0 motion-safe:scale-125 opacity-0"
       >
-        <Image
-          src={heroImg}
-          alt="HeroImg"
-          priority
-          fill
-          className=" object-cover motion-reduce:opacity-50"
+        <video
+          src="/videos/hero.mp4"
+          playsInline
+          muted
+          loop
+          autoPlay
+          className=" motion-reduce:opacity-50 object-cover h-screen w-full"
         />
       </FadeIn>
       <div className="flex relative h-screen flex-col justify-center">
         <RevealText
           id="hero-heading"
-          text="Effortless Elegance"
+          text="Timeless Allure"
           className=" max-w-xl text-6xl leading-none text-neutral-50 md:text-7xl lg:text-8xl font-display"
           staggerAmount={0.2}
           duration={1.7}
@@ -37,9 +38,8 @@ const Hero = () => {
           vars={{ delay: 1, duration: 1.3 }}
           className=" mt-6 max-w-md  text-lg text-neutral-100 translate-y-8"
         >
-          An expression of quiet luxury, Côte Royale is designed for the man who
-          commands attention without seeking it. A reflection of {"nature’s"}{" "}
-          raw beauty.
+          Discover the essence of timeless beauty with Elysium, where every
+          scent tells a story of elegance, passion, and sophistication.
         </FadeIn>
         <FadeIn vars={{ delay: 1.7, duration: 1.1 }}>
           <ButtonLink text="shop now" link="/" />
