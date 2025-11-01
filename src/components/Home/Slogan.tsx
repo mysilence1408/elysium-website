@@ -4,7 +4,7 @@ import React from "react";
 
 const Slogan = () => {
   return (
-    <div className=" relative overflow-hidden bg-[url('/images/background.jpg')] bg-cover bg-center py-16 text-gray-50 md:py-28">
+    <div className=" relative overflow-hidden bg-[url('/images/background.jpg')] lg:bg-fixed bg-cover bg-center py-16 text-gray-50 md:py-28">
       <div className="relative z-10 mx-auto max-w-4xl space-y-8 text-center">
         <FadeIn
           className=" translate-y-2 text-sm font-light tracking-[0.2em] uppercase"
