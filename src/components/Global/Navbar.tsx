@@ -49,7 +49,7 @@ const NavIcons = ({
       ))}
     </button>
     <UserButton />
-    <Link href="#" className="text-white" aria-label="Cart" tabIndex={tabIndex}>
+    <Link href="#" aria-label="Cart" tabIndex={tabIndex}>
       <HiShoppingBag size={24} color="#c7d7e6" />
     </Link>
   </div>
@@ -87,12 +87,12 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="navbar fixed top-0 left-0 z-50 w-full bg-[#020609] text-white">
+      <div className="navbar fixed top-0 left-0 z-50 w-full bg-[#020609]">
         <div className="flex items-center justify-between p-2 md:p-4">
           <button
             onClick={toggleDrawer}
             aria-label="Menu"
-            className="p-2 cursor-pointer text-white transition-colors duration-300 hover:bg-white/20"
+            className="p-2 cursor-pointer transition-colors duration-300 hover:bg-white/20"
           >
             <HiBars3 size={24} color="#c7d7e6" />
           </button>
@@ -141,7 +141,7 @@ const Navbar = () => {
       >
         <div className="flex mb-6 justify-end">
           <button
-            className="p-2 text-white transition-colors duration-300 hover:bg-white/10 cursor-pointer"
+            className="p-2 transition-colors duration-300 hover:bg-white/10 cursor-pointer"
             onClick={toggleDrawer}
             aria-label="Close Menu"
             tabIndex={isDrawerOpen ? 0 : -1}
@@ -155,7 +155,7 @@ const Navbar = () => {
             <Link
               href={link.href}
               key={link.id}
-              className="block border-b border-white/10 py-2 text-xl font-semibold tracking-wide text-white uppercase hover:text-gray-300"
+              className="block border-b border-white/10 py-2 text-xl font-semibold tracking-wide uppercase hover:text-gray-300"
               tabIndex={isDrawerOpen ? 0 : -1}
               onClick={toggleDrawer}
             >
