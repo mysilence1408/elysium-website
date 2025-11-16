@@ -50,7 +50,7 @@ const Products = async () => {
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-full h-64 object-cover mb-4 group-hover:scale-110 transition-transform duration-300 ease-in-out"
+                  className="w-full h-64 object-cover mb-4 group-hover:scale-105 transition-transform duration-500 ease-in-out"
                 />
               </div>
             )}
