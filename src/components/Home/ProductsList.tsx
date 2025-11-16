@@ -41,8 +41,7 @@ const ProductsList = ({ img, title, desc }: ProductsListProps) => {
         </div>
 
         <div className="flex flex-wrap gap-4">
-          <ButtonLink text="discover" link="/" />
-          <ButtonLink text="+ add to bag" link="/" />
+          <ButtonLink text="discover" link="/products" />
         </div>
       </FadeIn>
     </FadeIn>

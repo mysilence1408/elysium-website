@@ -1,6 +1,6 @@
 import React from "react";
 import Depp from "@/../public/images/dior.webp";
-import perfumeImg from "@/../public/images/ignis-bottle.png";
+import perfumeImg from "@/../public/images/perfume.png";
 import Image from "next/image";
 import { FadeIn } from "@/utils/FadeIn";
 import { formatPrice } from "@/utils/formatters";
@@ -45,10 +45,10 @@ const FeatureProduct = () => {
           />
           <div className=" flex justify-between p-10 pt-4">
             <div className="space-y-1">
-              <h3 className=" font-display text-4xl">ignis</h3>
-              <p className=" mt-2 text-gray-400">Eu perfume</p>
+              <h3 className=" font-display text-4xl">Zeds</h3>
+              <p className=" mt-2 text-gray-400">perfume</p>
               <div className=" mt-6">
-                <ButtonLink text="shop now" link="/" />
+                <ButtonLink text="shop now" link="/products" />
               </div>
             </div>
             <p className=" mt-4 text-gray-100" aria-label="Product price">

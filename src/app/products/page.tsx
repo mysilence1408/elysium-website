@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "next-view-transitions";
+import { formatPrice } from "@/utils/formatters";
 
 interface Product {
   _id: string;
@@ -43,18 +44,22 @@ const Products = async () => {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-6 py-12">
       {products.map((item: Product) => (
         <Link href={`/products/${item.slug}`} key={item._id}>
-          <div className="border rounded-2xl p-4 hover:shadow-lg transition">
+          <div className="border border-gray-600 rounded-lg p-4 hover:shadow-lg transition h-full group bg-black">
             {item.image && (
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-full h-64 object-cover rounded-xl mb-4"
-              />
+              <div className=" overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-64 object-cover mb-4 group-hover:scale-110 transition-transform duration-300 ease-in-out"
+                />
+              </div>
             )}
             <h6 className="text-xl font-semibold mb-2">{item.name}</h6>
-            <p className="text-gray-600 mb-2">{item.description}</p>
+            <p className="text-gray-400 mb-2">{item.description}</p>
             {item.price && (
-              <span className="font-bold text-lg">${item.price}</span>
+              <span className="font-bold text-lg">
+                {formatPrice(item.price)}
+              </span>
             )}
           </div>
         </Link>

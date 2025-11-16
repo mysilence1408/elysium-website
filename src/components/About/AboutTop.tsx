@@ -28,7 +28,7 @@ const AboutTop = () => {
         className=" absolute inset-0 w-fit h-fit m-auto hidden lg:block"
       >
         <video
-          src="/videos/hero.mp4"
+          src="/videos/about.mp4"
           playsInline
           muted
           autoPlay

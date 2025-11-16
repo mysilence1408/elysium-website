@@ -42,7 +42,7 @@ const Hero = () => {
           scent tells a story of elegance, passion, and sophistication.
         </FadeIn>
         <FadeIn vars={{ delay: 1.7, duration: 1.1 }}>
-          <ButtonLink text="shop now" link="/" />
+          <ButtonLink text="shop now" link="/products" />
         </FadeIn>
       </div>
     </div>
