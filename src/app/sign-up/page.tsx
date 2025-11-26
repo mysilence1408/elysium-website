@@ -1,4 +1,4 @@
-import SignIn from "@/components/SignIn/SignIn";
+import SignUp from "@/components/SignUp/SignUp";
 import { Metadata } from "next";
 import React from "react";
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const SignUpPage = () => {
   return (
     <div>
-      <SignIn />
+      <SignUp />
     </div>
   );
 };

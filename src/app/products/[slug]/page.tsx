@@ -1,7 +1,6 @@
-import React from "react";
 import { notFound } from "next/navigation";
-import { formatPrice } from "@/utils/formatters";
 import AddToBagButton from "@/components/Global/AddToBagButton";
+import { formatPrice } from "@/utils/formatters";
 
 interface Product {
   _id: string;
@@ -12,52 +11,51 @@ interface Product {
   price?: number;
 }
 
+// Fetch products (no cache or revalidate)
 const getData = async (slug: string): Promise<Product | null> => {
   try {
     const res = await fetch("http://localhost:3000/api/products", {
-      next: { revalidate: 0 },
+      cache: "no-store",
     });
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch products");
-    }
+    if (!res.ok) throw new Error("Failed to fetch products");
 
     const products: Product[] = await res.json();
-    return products.find((item) => item.slug === slug) || null;
+    return products.find((p) => p.slug === slug) || null;
   } catch (error) {
-    console.error("Error fetching product:", error);
+    console.error(error);
     return null;
   }
 };
 
-// ✅ params is NOT a Promise
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string } | Promise<{ slug: string }>;
 }) {
-  const post = await getData(params.slug);
-
-  if (!post) {
+  const { slug } = await params; // await params before using slug
+  const product = await getData(slug);
+  if (!product) {
     return {
       title: "Not Found",
       description: "The requested page does not exist.",
     };
   }
-
   return {
-    title: post.name,
-    description: post.description,
+    title: product.name,
+    description: product.description,
   };
 }
 
-// ✅ params is a normal object
-const ProductPage = async ({ params }: { params: { slug: string } }) => {
-  const product = await getData(params.slug);
+const ProductPage = async ({
+  params,
+}: {
+  params: { slug: string } | Promise<{ slug: string }>;
+}) => {
+  const { slug } = await params; // await params before using slug
+  const product = await getData(slug);
 
-  if (!product) {
-    notFound();
-  }
+  if (!product) notFound();
 
   return (
     <div className="px-8 lg:px-16 py-16">
@@ -78,20 +76,15 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             className="relative"
           />
         </div>
-
-        {/* Product info section */}
         <div className="text-white">
           <h1 className="font-display mb-4 border-b border-neutral-700 pb-2 text-4xl md:text-5xl">
             {product.name}
           </h1>
-
           <div className="space-y-6">
             <p>{product.description}</p>
-
             <p className="mt-10 text-3xl font-light">
               {formatPrice(product.price)}
             </p>
-
             <AddToBagButton
               product={{
                 _id: product._id,
