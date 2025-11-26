@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "next-view-transitions";
 import { formatPrice } from "@/utils/formatters";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Products",
+  description:
+    "Discover Elysium’s collection of premium fragrances and cosmetics. Explore refined, timeless scents crafted for elegance, individuality, and everyday luxury.",
+};
 interface Product {
   _id: string;
   name: string;
