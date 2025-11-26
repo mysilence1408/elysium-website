@@ -1,6 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { formatPrice } from "@/utils/formatters";
+import AddToBagButton from "@/components/Global/AddToBagButton";
 
 interface Product {
   _id: string;
@@ -91,9 +92,15 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
               {formatPrice(product.price)}
             </p>
 
-            <button className="cursor-pointer w-full bg-white py-3 font-medium text-black uppercase transition hover:bg-neutral-200 duration-200">
-              Add to Bag
-            </button>
+            <AddToBagButton
+              product={{
+                _id: product._id,
+                name: product.name,
+                slug: product.slug,
+                price: product.price ?? null,
+                image: product.image ?? null,
+              }}
+            />
           </div>
         </div>
       </div>

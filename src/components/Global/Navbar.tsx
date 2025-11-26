@@ -1,10 +1,15 @@
 "use client";
+
 import clsx from "clsx";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import React, { useEffect, useRef, useState } from "react";
 import { HiBars3, HiShoppingBag, HiXMark } from "react-icons/hi2";
 import UserButton from "@/utils/UserButton";
+
+// Redux imports
+import { useAppSelector } from "@/store/hooks";
+import { selectCartCount } from "@/store/cartSlice";
 
 type NavIconsProps = {
   className?: string;
@@ -22,38 +27,57 @@ const NavIcons = ({
   isIndicatorActive,
   toggleAudioIndicator,
   audioElementRef,
-}: NavIconsProps) => (
-  <div className={clsx("flex items-center gap-8", className)}>
-    <button
-      onClick={toggleAudioIndicator}
-      className="flex items-center space-x-0.5 cursor-pointer"
-      aria-label={isAudioPlaying ? "Pause music" : "Play music"}
-      tabIndex={tabIndex}
-    >
-      <audio
-        ref={audioElementRef}
-        className="hidden"
-        src="/audio/loop.mp3"
-        loop
-      />
-      {[1, 2, 3, 4].map((bar) => (
-        <div
-          key={bar}
-          className={clsx("indicator-line", {
-            active: isIndicatorActive,
-          })}
-          style={{
-            animationDelay: `${bar * 0.1}s`,
-          }}
+}: NavIconsProps) => {
+  const cartCount = useAppSelector(selectCartCount); // Read cart count
+
+  return (
+    <div className={clsx("flex items-center gap-8", className)}>
+      {/* Audio Button */}
+      <button
+        onClick={toggleAudioIndicator}
+        className="flex items-center space-x-0.5 cursor-pointer"
+        aria-label={isAudioPlaying ? "Pause music" : "Play music"}
+        tabIndex={tabIndex}
+      >
+        <audio
+          ref={audioElementRef}
+          className="hidden"
+          src="/audio/loop.mp3"
+          loop
         />
-      ))}
-    </button>
-    <UserButton />
-    <Link href="#" aria-label="Cart" tabIndex={tabIndex}>
-      <HiShoppingBag size={24} color="#c7d7e6" />
-    </Link>
-  </div>
-);
+        {[1, 2, 3, 4].map((bar) => (
+          <div
+            key={bar}
+            className={clsx("indicator-line", {
+              active: isIndicatorActive,
+            })}
+            style={{
+              animationDelay: `${bar * 0.1}s`,
+            }}
+          />
+        ))}
+      </button>
+
+      <UserButton />
+
+      {/* Cart Icon + Badge */}
+      <Link
+        href="/cart"
+        aria-label="Cart"
+        tabIndex={tabIndex}
+        className="relative"
+      >
+        <HiShoppingBag size={24} color="#c7d7e6" />
+
+        {cartCount > 0 && (
+          <span className="absolute -top-2 -right-3 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-0.5 text-xs font-semibold">
+            {cartCount}
+          </span>
+        )}
+      </Link>
+    </div>
+  );
+};
 
 const NavLinks = [
   { id: 1, title: "Home", href: "/" },
@@ -89,6 +113,7 @@ const Navbar = () => {
     <header>
       <div className="navbar fixed top-0 left-0 z-50 w-full bg-[#020609]">
         <div className="flex items-center justify-between p-2 md:p-4">
+          {/* Menu Button */}
           <button
             onClick={toggleDrawer}
             aria-label="Menu"
@@ -97,6 +122,7 @@ const Navbar = () => {
             <HiBars3 size={24} color="#c7d7e6" />
           </button>
 
+          {/* Logo */}
           <div className="absolute left-1/2 -translate-x-1/2 transform">
             <Link href="/">
               <Image
@@ -109,6 +135,7 @@ const Navbar = () => {
             </Link>
           </div>
 
+          {/* Desktop Icons */}
           <div className="flex">
             <NavIcons
               className="hidden md:flex"
@@ -120,6 +147,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      {/* Drawer Overlay */}
       <div
         className={clsx(
           "nav-drawer-blur fixed inset-0 z-40 bg-black/40 opacity-0 transition-all duration-500",
@@ -131,13 +160,12 @@ const Navbar = () => {
         aria-hidden="true"
       />
 
+      {/* Side Drawer */}
       <div
         className={clsx(
           "nav-drawer fixed top-0 left-0 z-50 h-full w-72 bg-[#060E16] p-6 transition-transform duration-500",
           isDrawerOpen ? "translate-x-0" : "-translate-x-full"
         )}
-        role="dialog"
-        aria-modal={isDrawerOpen}
       >
         <div className="flex mb-6 justify-end">
           <button
@@ -150,6 +178,7 @@ const Navbar = () => {
           </button>
         </div>
 
+        {/* Mobile NavLinks */}
         <nav className="space-y-4" aria-label="Main Navigation">
           {NavLinks.map((link) => (
             <Link
@@ -162,6 +191,8 @@ const Navbar = () => {
               {link.title}
             </Link>
           ))}
+
+          {/* Mobile Icons */}
           <div className="pt-4 md:hidden">
             <NavIcons
               className="justify-around"
