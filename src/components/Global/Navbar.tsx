@@ -60,12 +60,7 @@ const NavIcons = ({
       <UserButton />
 
       {/* Cart Icon + Badge */}
-      <Link
-        href="/cart"
-        aria-label="Cart"
-        tabIndex={tabIndex}
-        className="relative"
-      >
+      <Link href="#" aria-label="Cart" tabIndex={tabIndex} className="relative">
         <HiShoppingBag size={24} color="#c7d7e6" />
 
         {cartCount > 0 && (
